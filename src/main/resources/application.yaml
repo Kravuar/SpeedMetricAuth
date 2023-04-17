@@ -1,0 +1,32 @@
+variables:
+  &sessionTimeout 60
+
+server:
+  port: 8080
+  servlet:
+    session:
+      timeout: *sessionTimeout
+
+spring:
+  application:
+    name: users
+  data:
+    mongodb:
+      database: users
+      authentication-database: admin
+      username: root
+      password: test
+      port: 27017
+      host: localhost
+      auto-index-creation: true
+
+app:
+  i18n:
+    supportedLocales:
+      - EN
+      - RU
+    defaultLocale: RU
+  web:
+    loginAttempts: 3
+    sessionTimeout: *sessionTimeout
+    metricEpsilon: 0.001

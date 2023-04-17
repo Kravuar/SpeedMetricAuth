@@ -1,0 +1,42 @@
+:root {
+    --main: #fbfbf2;
+    --bg: #847577;
+    --secondary: #a6a2a2;
+    --contrasted: #cfd2cd;
+}
+
+body {
+    background: var(--main);
+    background: radial-gradient(circle, var(--main) 0%, var(--secondary) 100%);
+}
+
+input, input::placeholder{
+    background: var(--secondary) !important;
+    color: var(--main) !important;
+}
+
+.centered {
+    display: flex;
+    justify-content: center;
+}
+
+.grid {
+    display: grid;
+    grid-gap: 2px;
+    padding: 10px;
+}
+
+.cell {
+    background-color: var(--secondary);
+}
+
+.cell:after {
+    padding-bottom: 100%;
+}
+.cell:hover, .cell.toggled:hover {
+    background-color: var(--contrasted);
+}
+.cell.toggled {
+    background-color: var(--main);
+    transition: all 0.25s ease-in-out;
+}
