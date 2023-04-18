@@ -8,7 +8,6 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.List;
 import java.util.Objects;
 
 @Document("users")
@@ -19,15 +18,11 @@ public class User {
     @Indexed(unique = true)
     @Size(min = 5, max = 20)
     private String username;
-    private Binary password;
-    private double metric;
-    private double[] deviations;
+    private Password password;
 
-    public User(String username, Binary password, double metric, double[] deviations) {
+    public User(String username, Password password) {
         this.username = username;
         this.password = password;
-        this.metric = metric;
-        this.deviations = deviations;
     }
 
     @Override

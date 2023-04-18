@@ -9,5 +9,5 @@ import org.springframework.validation.annotation.Validated;
 public record AuthProps(
         @Min(1) int loginAttempts,
         @Min(1) int sessionTimeout,
-        @Min(0) double metricEpsilon
+        @Min(0) double passwordEpsilon
 ) {}
