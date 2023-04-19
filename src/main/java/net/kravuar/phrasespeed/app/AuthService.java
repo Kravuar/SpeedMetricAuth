@@ -26,29 +26,34 @@ public class AuthService {
 
     public User signup(UserForm userForm) {
         return userRepo.insert(new User(
-                userForm.getUsername(),
-                new Password(toBinary(userForm.getPassword()),
-                             userForm.getMetric(),
-                             userForm.getDeviation()))
+                userForm.username(),
+                new Password(toBinary(userForm.password()),
+                             userForm.metric(),
+                             userForm.deviation()))
         );
     }
     public String login(UserForm userForm) {
-        var user = userRepo.findByUsername(userForm.getUsername());
-        var inputPassword = new Password(toBinary(userForm.getPassword()),
-                userForm.getMetric(),
-                userForm.getDeviation());
+        var user = userRepo.findByUsername(userForm.username());
+        var inputPassword = new Password(toBinary(userForm.password()),
+                userForm.metric(),
+                userForm.deviation());
 
         if (user == null)
-            throw new RestException(new Object[]{userForm.getUsername()}, HttpStatus.NOT_FOUND, "exception.userNotFound");
+            throw new RestException(new Object[]{userForm.username()}, HttpStatus.NOT_FOUND, "exception.userNotFound");
         if (!user.getPassword().equals(inputPassword))
-            throw new RestException(new Object[]{userForm.getUsername()}, HttpStatus.FORBIDDEN, "exception.credentials");
+            throw new RestException(new Object[]{userForm.username()}, HttpStatus.FORBIDDEN, "exception.credentials");
         if (!validateMetric(user.getPassword(), inputPassword))
-            throw new RestException(new Object[]{userForm.getUsername()}, HttpStatus.FORBIDDEN, "exception.wrongMetric");
+            throw new RestException(new Object[]{userForm.username()}, HttpStatus.FORBIDDEN, "exception.wrongMetric");
 
         return getTokenFor(user);
     }
 
     private boolean validateMetric(Password ideal, Password input) {
+        System.out.printf("Ideal: %f, %f\n", ideal.metric(), ideal.deviation());
+        System.out.printf("Input: %f, %f\n", input.metric(), input.deviation());
+
+        System.out.println(Math.abs(ideal.metric() - input.metric()));
+        System.out.println(Math.abs(ideal.deviation() - input.deviation()));
         return Math.abs(ideal.metric() - input.metric()) < authProps.passwordEpsilon()
                 && Math.abs(ideal.deviation() - input.deviation()) < authProps.passwordEpsilon();
     }

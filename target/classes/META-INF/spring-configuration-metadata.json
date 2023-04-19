@@ -1,0 +1,45 @@
+{
+  "groups": [
+    {
+      "name": "app.i18n",
+      "type": "net.kravuar.phrasespeed.props.LocalizationProps",
+      "sourceType": "net.kravuar.phrasespeed.props.LocalizationProps"
+    },
+    {
+      "name": "app.web",
+      "type": "net.kravuar.phrasespeed.props.AuthProps",
+      "sourceType": "net.kravuar.phrasespeed.props.AuthProps"
+    }
+  ],
+  "properties": [
+    {
+      "name": "app.i18n.default-locale",
+      "type": "java.lang.String",
+      "sourceType": "net.kravuar.phrasespeed.props.LocalizationProps"
+    },
+    {
+      "name": "app.i18n.supported-locales",
+      "type": "java.util.List<java.lang.String>",
+      "sourceType": "net.kravuar.phrasespeed.props.LocalizationProps"
+    },
+    {
+      "name": "app.web.login-attempts",
+      "type": "java.lang.Integer",
+      "sourceType": "net.kravuar.phrasespeed.props.AuthProps",
+      "defaultValue": 0
+    },
+    {
+      "name": "app.web.password-epsilon",
+      "type": "java.lang.Double",
+      "sourceType": "net.kravuar.phrasespeed.props.AuthProps",
+      "defaultValue": 0
+    },
+    {
+      "name": "app.web.session-timeout",
+      "type": "java.lang.Integer",
+      "sourceType": "net.kravuar.phrasespeed.props.AuthProps",
+      "defaultValue": 0
+    }
+  ],
+  "hints": []
+}

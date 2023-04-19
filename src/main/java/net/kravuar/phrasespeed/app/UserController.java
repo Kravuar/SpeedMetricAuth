@@ -18,14 +18,14 @@ public class UserController {
     private final AuthService authService;
 
     @PostMapping("signup")
-    public User signup(@RequestBody @Valid UserForm userForm) {
+    public User signup(@Valid @RequestBody UserForm userForm) {
         var user = authService.signup(userForm);
         log.info("SIGNUP: {}", user);
         return user;
     }
 
     @PostMapping("login")
-    public String login(@RequestBody @Valid UserForm userForm) {
+    public String login(@Valid @RequestBody UserForm userForm) {
         log.info("LOGIN ATTEMPT: {}", userForm.username());
         return authService.login(userForm);
     }
