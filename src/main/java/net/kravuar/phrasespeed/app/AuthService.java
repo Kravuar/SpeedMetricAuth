@@ -51,9 +51,9 @@ public class AuthService {
     private boolean validateMetric(Password ideal, Password input) {
         System.out.printf("Ideal: %f, %f\n", ideal.metric(), ideal.deviation());
         System.out.printf("Input: %f, %f\n", input.metric(), input.deviation());
-
         System.out.println(Math.abs(ideal.metric() - input.metric()));
         System.out.println(Math.abs(ideal.deviation() - input.deviation()));
+
         return Math.abs(ideal.metric() - input.metric()) < authProps.passwordEpsilon()
                 && Math.abs(ideal.deviation() - input.deviation()) < authProps.passwordEpsilon();
     }
